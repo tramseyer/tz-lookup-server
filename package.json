@@ -1,0 +1,12 @@
+{
+  "name": "tz-lookup-server",
+  "description": "Self hosted tz-lookup server",
+  "author": "Tristan Ramseyer <tristanramseyer@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tramseyer/tz-lookup-server.git"
+  },
+  "dependencies": {
+    "tz-lookup": "*"
+  }
+}
