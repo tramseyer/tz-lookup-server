@@ -14,7 +14,7 @@ http.createServer(function(req, res) {
       return res.end('Need lat and lon passed in as query parameters');
     }
     res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify(tzlookup(url.query.lat, !url.query.lon)));
+    res.end(JSON.stringify(tzlookup(url.query.lat, url.query.lon)));
   }
   else {
     res.writeHead(404);
