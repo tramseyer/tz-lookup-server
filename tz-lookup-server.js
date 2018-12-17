@@ -1,9 +1,9 @@
-var http = require('http');
-var Url = require('url');
-var tzlookup = require('tz-lookup');
+const http = require('http');
+const Url = require('url');
+const tzlookup = require('tz-lookup');
 
 http.createServer(function(req, res) {
-  var url = Url.parse(req.url, true);
+  const url = Url.parse(req.url, true);
 
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
@@ -11,7 +11,13 @@ http.createServer(function(req, res) {
   if (req.method === 'GET' && url.pathname === '/') {
     if (!url.query.lat || !url.query.lon) {
       res.writeHead(404);
-      return res.end('Need lat and lon passed in as query parameters');
+      res.end('"Europe/Zurich"');
+      return;
+    }
+    if (isNaN(url.query.lat) || isNaN(url.query.lon)) {
+      res.writeHead(404);
+      res.end('"Europe/Zurich"');
+      return;
     }
     res.writeHead(200, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify(tzlookup(url.query.lat, url.query.lon)));
